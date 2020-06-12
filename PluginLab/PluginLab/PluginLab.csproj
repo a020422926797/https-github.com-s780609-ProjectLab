@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CB3CEC61-F369-471E-B06A-95EC580FB3EC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PluginLab</RootNamespace>
+    <AssemblyName>PluginLab</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>luxshare.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CsvHelper, Version=13.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.13.0.0\lib\net45\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.5.3.2, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.5.3.2\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="McTools.Xrm.Connection, Version=1.2020.1.29, Culture=neutral, PublicKeyToken=96037217801d9658, processorArchitecture=MSIL">
+      <HintPath>..\packages\MscrmTools.Xrm.Connection.1.2020.1.29\lib\net462\McTools.Xrm.Connection.dll</HintPath>
+    </Reference>
+    <Reference Include="McTools.Xrm.Connection.WinForms, Version=1.2020.1.29, Culture=neutral, PublicKeyToken=f1559f79cf894e27, processorArchitecture=MSIL">
+      <HintPath>..\packages\MscrmTools.Xrm.Connection.1.2020.1.29\lib\net462\McTools.Xrm.Connection.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.9.0.2.26\lib\net462\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.5.2.6\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Rest.ClientRuntime, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CrmSdk.XrmTooling.CoreAssembly.9.1.0.26\lib\net462\Microsoft.Rest.ClientRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.XmlTransform, Version=2.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Xdt.2.1.1\lib\net40\Microsoft.Web.XmlTransform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xrm.Sdk, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.9.0.2.26\lib\net462\Microsoft.Xrm.Sdk.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xrm.Sdk.Deployment, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CrmSdk.Deployment.9.0.2.21\lib\net462\Microsoft.Xrm.Sdk.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xrm.Sdk.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CrmSdk.Workflow.9.0.2.21\lib\net462\Microsoft.Xrm.Sdk.Workflow.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xrm.Tooling.Connector, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CrmSdk.XrmTooling.CoreAssembly.9.1.0.26\lib\net462\Microsoft.Xrm.Tooling.Connector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xrm.Tooling.CrmConnectControl, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CrmSdk.XrmTooling.WpfControls.9.1.0.26\lib\net462\Microsoft.Xrm.Tooling.CrmConnectControl.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xrm.Tooling.Ui.Styles, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CrmSdk.XrmTooling.WpfControls.9.1.0.26\lib\net462\Microsoft.Xrm.Tooling.Ui.Styles.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xrm.Tooling.WebResourceUtility, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CrmSdk.XrmTooling.WpfControls.9.1.0.26\lib\net462\Microsoft.Xrm.Tooling.WebResourceUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.Core, Version=2.14.0.832, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\NuGet.Core.2.14.0\lib\net40-Client\NuGet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="ScintillaNET, Version=3.6.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\jacobslusser.ScintillaNET.3.6.3\lib\net40\ScintillaNET.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.Activities.Presentation" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Workflow.Activities" />
+    <Reference Include="System.Workflow.ComponentModel" />
+    <Reference Include="System.Workflow.Runtime" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=3.0.6.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
+      <HintPath>..\packages\DockPanelSuite.3.0.6\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="WeifenLuo.WinFormsUI.Docking.ThemeVS2015, Version=3.0.6.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
+      <HintPath>..\packages\DockPanelSuite.ThemeVS2015.3.0.6\lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2015.dll</HintPath>
+    </Reference>
+    <Reference Include="Xrm.Sdk.PluginRegistration, Version=3.2020.5.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xrm.Sdk.PluginRegistration.3.2020.5.2\lib\net462\Plugins\Xrm.Sdk.PluginRegistration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XrmToolBox, Version=1.2020.2.37, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XrmToolBoxPackage.1.2020.2.37\lib\net462\XrmToolBox.exe</HintPath>
+    </Reference>
+    <Reference Include="XrmToolBox.Extensibility, Version=1.2020.2.37, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XrmToolBoxPackage.1.2020.2.37\lib\net462\XrmToolBox.Extensibility.dll</HintPath>
+    </Reference>
+    <Reference Include="XrmToolBox.PluginsStore, Version=1.2020.2.37, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XrmToolBoxPackage.1.2020.2.37\lib\net462\XrmToolBox.PluginsStore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Crm\Account.cs" />
+    <Compile Include="Crm\AccountLeads.cs" />
+    <Compile Include="Crm\Actions.cs" />
+    <Compile Include="Crm\ActivityMimeAttachment.cs" />
+    <Compile Include="Crm\ActivityParty.cs" />
+    <Compile Include="Crm\ActivityPointer.cs" />
+    <Compile Include="Crm\Annotation.cs" />
+    <Compile Include="Crm\AnnualFiscalCalendar.cs" />
+    <Compile Include="Crm\Appointment.cs" />
+    <Compile Include="Crm\AsyncOperation.cs" />
+    <Compile Include="Crm\AttributeMap.cs" />
+    <Compile Include="Crm\Audit.cs" />
+    <Compile Include="Crm\BusinessProcessFlowInstance.cs" />
+    <Compile Include="Crm\BusinessUnit.cs" />
+    <Compile Include="Crm\Calendar.cs" />
+    <Compile Include="Crm\CalendarRule.cs" />
+    <Compile Include="Crm\Category.cs" />
+    <Compile Include="Crm\ChannelAccessProfileEntityAccessLevel.cs" />
+    <Compile Include="Crm\clf_autonumber.cs" />
+    <Compile Include="Crm\Competitor.cs" />
+    <Compile Include="Crm\CompetitorProduct.cs" />
+    <Compile Include="Crm\CompetitorSalesLiterature.cs" />
+    <Compile Include="Crm\Connection.cs" />
+    <Compile Include="Crm\ConnectionRole.cs" />
+    <Compile Include="Crm\ConnectionRoleAssociation.cs" />
+    <Compile Include="Crm\ConnectionRoleObjectTypeCode.cs" />
+    <Compile Include="Crm\ConstraintBasedGroup.cs" />
+    <Compile Include="Crm\Contact.cs" />
+    <Compile Include="Crm\ContactInvoices.cs" />
+    <Compile Include="Crm\ContactLeads.cs" />
+    <Compile Include="Crm\ContactOrders.cs" />
+    <Compile Include="Crm\ContactQuotes.cs" />
+    <Compile Include="Crm\ConvertRule.cs" />
+    <Compile Include="Crm\ConvertRuleItem.cs" />
+    <Compile Include="Crm\CrmServiceContext.cs" />
+    <Compile Include="Crm\CustomControl.cs" />
+    <Compile Include="Crm\CustomControlDefaultConfig.cs" />
+    <Compile Include="Crm\CustomControlResource.cs" />
+    <Compile Include="Crm\CustomerAddress.cs" />
+    <Compile Include="Crm\CustomerOpportunityRole.cs" />
+    <Compile Include="Crm\CustomerRelationship.cs" />
+    <Compile Include="Crm\DataPerformance.cs" />
+    <Compile Include="Crm\DisplayString.cs" />
+    <Compile Include="Crm\DocumentTemplate.cs" />
+    <Compile Include="Crm\DuplicateRecord.cs" />
+    <Compile Include="Crm\DuplicateRule.cs" />
+    <Compile Include="Crm\DuplicateRuleCondition.cs" />
+    <Compile Include="Crm\DynamicProperty.cs" />
+    <Compile Include="Crm\DynamicPropertyAssociation.cs" />
+    <Compile Include="Crm\DynamicPropertyInstance.cs" />
+    <Compile Include="Crm\DynamicPropertyOptionSetItem.cs" />
+    <Compile Include="Crm\Email.cs" />
+    <Compile Include="Crm\EmailServerProfile.cs" />
+    <Compile Include="Crm\EmailSignature.cs" />
+    <Compile Include="Crm\Entitlement.cs" />
+    <Compile Include="Crm\EntityMap.cs" />
+    <Compile Include="Crm\Equipment.cs" />
+    <Compile Include="Crm\Fax.cs" />
+    <Compile Include="Crm\FixedMonthlyFiscalCalendar.cs" />
+    <Compile Include="Crm\Goal.cs" />
+    <Compile Include="Crm\GoalRollupQuery.cs" />
+    <Compile Include="Crm\HierarchyRule.cs" />
+    <Compile Include="Crm\HierarchySecurityConfiguration.cs" />
+    <Compile Include="Crm\Import.cs" />
+    <Compile Include="Crm\ImportMap.cs" />
+    <Compile Include="Crm\Incident.cs" />
+    <Compile Include="Crm\IncidentResolution.cs" />
+    <Compile Include="Crm\InvalidDependency.cs" />
+    <Compile Include="Crm\Invoice.cs" />
+    <Compile Include="Crm\InvoiceDetail.cs" />
+    <Compile Include="Crm\IsvConfig.cs" />
+    <Compile Include="Crm\LanguageLocale.cs" />
+    <Compile Include="Crm\LookUpMapping.cs" />
+    <Compile Include="Crm\lux_address.cs" />
+    <Compile Include="Crm\lux_appointmentclaims.cs" />
+    <Compile Include="Crm\lux_appointmentleaves.cs" />
+    <Compile Include="Crm\lux_appointmenttakeleave.cs" />
+    <Compile Include="Crm\lux_appointmenttrips.cs" />
+    <Compile Include="Crm\lux_appsetting.cs" />
+    <Compile Include="Crm\lux_bom.cs" />
+    <Compile Include="Crm\lux_bomtable.cs" />
+    <Compile Include="Crm\lux_bulletin.cs" />
+    <Compile Include="Crm\lux_businesstripmanagement.cs" />
+    <Compile Include="Crm\lux_cardemand.cs" />
+    <Compile Include="Crm\lux_companymaster.cs" />
+    <Compile Include="Crm\lux_countrymaster.cs" />
+    <Compile Include="Crm\lux_customerissuetracking.cs" />
+    <Compile Include="Crm\lux_customermealapplication.cs" />
+    <Compile Include="Crm\lux_customermealdetail.cs" />
+    <Compile Include="Crm\lux_customervisitapplication.cs" />
+    <Compile Include="Crm\lux_customervisitapplicationprocess.cs" />
+    <Compile Include="Crm\lux_defaultrdownerbyproductcategory.cs" />
+    <Compile Include="Crm\lux_distributionchannel.cs" />
+    <Compile Include="Crm\lux_employee.cs" />
+    <Compile Include="Crm\lux_energyconsumptiongroup.cs" />
+    <Compile Include="Crm\lux_energyconsumptiontype.cs" />
+    <Compile Include="Crm\lux_equipmentprovider.cs" />
+    <Compile Include="Crm\lux_factory.cs" />
+    <Compile Include="Crm\lux_factorydecoration.cs" />
+    <Compile Include="Crm\lux_factoryewsc.cs" />
+    <Compile Include="Crm\lux_factoryrent.cs" />
+    <Compile Include="Crm\lux_factorysite.cs" />
+    <Compile Include="Crm\lux_factorytour.cs" />
+    <Compile Include="Crm\lux_incident_invoice.cs" />
+    <Compile Include="Crm\lux_incident_salesorder.cs" />
+    <Compile Include="Crm\lux_incotermsmaster.cs" />
+    <Compile Include="Crm\lux_labmaster.cs" />
+    <Compile Include="Crm\lux_laborcost.cs" />
+    <Compile Include="Crm\lux_materialgroup.cs" />
+    <Compile Include="Crm\lux_meetingroom.cs" />
+    <Compile Include="Crm\lux_oabusinesstrip.cs" />
+    <Compile Include="Crm\lux_oabusinesstripplan.cs" />
+    <Compile Include="Crm\lux_oabusinesstripsummary.cs" />
+    <Compile Include="Crm\lux_oaexpenseclaim.cs" />
+    <Compile Include="Crm\lux_oaexpenseclaimitem.cs" />
+    <Compile Include="Crm\lux_oaleave.cs" />
+    <Compile Include="Crm\lux_oaleavesummary.cs" />
+    <Compile Include="Crm\lux_oatakeleave.cs" />
+    <Compile Include="Crm\lux_oatakeleavesummary.cs" />
+    <Compile Include="Crm\lux_operationsmcequipment.cs" />
+    <Compile Include="Crm\lux_opportunitysalesprocess_bu10_fae.cs" />
+    <Compile Include="Crm\lux_oppproductmgt.cs" />
+    <Compile Include="Crm\lux_othertask.cs" />
+    <Compile Include="Crm\lux_partdrawinglist.cs" />
+    <Compile Include="Crm\lux_paymentterms.cs" />
+    <Compile Include="Crm\lux_personincharge.cs" />
+    <Compile Include="Crm\lux_plmcustpartcode.cs" />
+    <Compile Include="Crm\lux_pricelistitem_new.cs" />
+    <Compile Include="Crm\lux_producttoplant.cs" />
+    <Compile Include="Crm\lux_projectinformation.cs" />
+    <Compile Include="Crm\lux_quoteactualcost.cs" />
+    <Compile Include="Crm\lux_quoteactualcostbom.cs" />
+    <Compile Include="Crm\lux_quoteactualcostlineinvestment.cs" />
+    <Compile Include="Crm\lux_quoteactualcostmva.cs" />
+    <Compile Include="Crm\lux_quoteamortization.cs" />
+    <Compile Include="Crm\lux_quoteamortizationline.cs" />
+    <Compile Include="Crm\lux_quotebom.cs" />
+    <Compile Include="Crm\lux_quotebomversion.cs" />
+    <Compile Include="Crm\lux_quotecomparisonanalysis.cs" />
+    <Compile Include="Crm\lux_quotecomparisonanalysisresult.cs" />
+    <Compile Include="Crm\lux_quotefixture.cs" />
+    <Compile Include="Crm\lux_quotefixtureitem.cs" />
+    <Compile Include="Crm\lux_quotemisc.cs" />
+    <Compile Include="Crm\lux_quotemiscdecoration.cs" />
+    <Compile Include="Crm\lux_quotemiscfactoryre.cs" />
+    <Compile Include="Crm\lux_quotemiscother.cs" />
+    <Compile Include="Crm\lux_quotemisctransport.cs" />
+    <Compile Include="Crm\lux_quotemoldplastic.cs" />
+    <Compile Include="Crm\lux_quotemoldplasticpackaging.cs" />
+    <Compile Include="Crm\lux_quoteort.cs" />
+    <Compile Include="Crm\lux_quoteortelectricitycost.cs" />
+    <Compile Include="Crm\lux_quoteorttc.cs" />
+    <Compile Include="Crm\lux_quoteorttestmachinecost.cs" />
+    <Compile Include="Crm\lux_quoteorttestmachinemaintenancecost.cs" />
+    <Compile Include="Crm\lux_quoteorttlc.cs" />
+    <Compile Include="Crm\lux_quoteorttsc.cs" />
+    <Compile Include="Crm\lux_quoteortwatercost.cs" />
+    <Compile Include="Crm\lux_quoteproduct.cs" />
+    <Compile Include="Crm\lux_quoteroute.cs" />
+    <Compile Include="Crm\lux_quoterouteoprmc.cs" />
+    <Compile Include="Crm\lux_quoterouteoprmcequ.cs" />
+    <Compile Include="Crm\lux_quoteroutepc.cs" />
+    <Compile Include="Crm\lux_quoteroutepmd.cs" />
+    <Compile Include="Crm\lux_quoterouteversion.cs" />
+    <Compile Include="Crm\lux_quotetooling.cs" />
+    <Compile Include="Crm\lux_requestforquotation.cs" />
+    <Compile Include="Crm\lux_route.cs" />
+    <Compile Include="Crm\lux_routeoprmc.cs" />
+    <Compile Include="Crm\lux_routeoprtable.cs" />
+    <Compile Include="Crm\lux_routetable.cs" />
+    <Compile Include="Crm\lux_safetyzonepermittedperiod.cs" />
+    <Compile Include="Crm\lux_salesdistrict.cs" />
+    <Compile Include="Crm\lux_salesgroup.cs" />
+    <Compile Include="Crm\lux_salesoffice.cs" />
+    <Compile Include="Crm\lux_salesorg.cs" />
+    <Compile Include="Crm\lux_salesparameter.cs" />
+    <Compile Include="Crm\lux_salesregion.cs" />
+    <Compile Include="Crm\lux_sampleapplication.cs" />
+    <Compile Include="Crm\lux_sharepointconfig.cs" />
+    <Compile Include="Crm\lux_shippingconditions.cs" />
+    <Compile Include="Crm\lux_stellavisit.cs" />
+    <Compile Include="Crm\lux_systemsettinglist.cs" />
+    <Compile Include="Crm\lux_systemsettings.cs" />
+    <Compile Include="Crm\lux_vipcustomerhotelmaster.cs" />
+    <Compile Include="Crm\lux_visitorapplicationprocess.cs" />
+    <Compile Include="Crm\Metric.cs" />
+    <Compile Include="Crm\MonthlyFiscalCalendar.cs" />
+    <Compile Include="Crm\NavigationSetting.cs" />
+    <Compile Include="Crm\NewProcess.cs" />
+    <Compile Include="Crm\new_bpf_488f99d56f8541d38adc3ecab36df2c8.cs" />
+    <Compile Include="Crm\new_bpf_4f7387bc328445d3a3787cdfa3dcbd40.cs" />
+    <Compile Include="Crm\new_testentity.cs" />
+    <Compile Include="Crm\OfficeGraphDocument.cs" />
+    <Compile Include="Crm\OfflineCommandDefinition.cs" />
+    <Compile Include="Crm\Opportunity.cs" />
+    <Compile Include="Crm\OpportunityClose.cs" />
+    <Compile Include="Crm\OpportunityCompetitors.cs" />
+    <Compile Include="Crm\OpportunityProduct.cs" />
+    <Compile Include="Crm\OpportunitySalesProcess.cs" />
+    <Compile Include="Crm\OptionSets.cs" />
+    <Compile Include="Crm\OrderClose.cs" />
+    <Compile Include="Crm\Organization.cs" />
+    <Compile Include="Crm\OrganizationUI.cs" />
+    <Compile Include="Crm\OrgInsightsMetric.cs" />
+    <Compile Include="Crm\OrgInsightsNotification.cs" />
+    <Compile Include="Crm\OwnerMapping.cs" />
+    <Compile Include="Crm\PersonalDocumentTemplate.cs" />
+    <Compile Include="Crm\PhoneCall.cs" />
+    <Compile Include="Crm\PhoneToCaseProcess.cs" />
+    <Compile Include="Crm\PickListMapping.cs" />
+    <Compile Include="Crm\PluginAssembly.cs" />
+    <Compile Include="Crm\PluginTraceLog.cs" />
+    <Compile Include="Crm\PluginType.cs" />
+    <Compile Include="Crm\PluginTypeStatistic.cs" />
+    <Compile Include="Crm\Position.cs" />
+    <Compile Include="Crm\Post.cs" />
+    <Compile Include="Crm\PostFollow.cs" />
+    <Compile Include="Crm\PostLike.cs" />
+    <Compile Include="Crm\PriceLevel.cs" />
+    <Compile Include="Crm\PrincipalEntityMap.cs" />
+    <Compile Include="Crm\PrincipalObjectAttributeAccess.cs" />
+    <Compile Include="Crm\Privilege.cs" />
+    <Compile Include="Crm\ProcessSession.cs" />
+    <Compile Include="Crm\ProcessStage.cs" />
+    <Compile Include="Crm\ProcessTrigger.cs" />
+    <Compile Include="Crm\Product.cs" />
+    <Compile Include="Crm\ProductAssociation.cs" />
+    <Compile Include="Crm\ProductPriceLevel.cs" />
+    <Compile Include="Crm\ProductSubstitute.cs" />
+    <Compile Include="Crm\Publisher.cs" />
+    <Compile Include="Crm\PublisherAddress.cs" />
+    <Compile Include="Crm\QuarterlyFiscalCalendar.cs" />
+    <Compile Include="Crm\Queue.cs" />
+    <Compile Include="Crm\QueueItem.cs" />
+    <Compile Include="Crm\QueueMembership.cs" />
+    <Compile Include="Crm\Quote.cs" />
+    <Compile Include="Crm\QuoteClose.cs" />
+    <Compile Include="Crm\QuoteDetail.cs" />
+    <Compile Include="Crm\RecurrenceRule.cs" />
+    <Compile Include="Crm\RecurringAppointmentMaster.cs" />
+    <Compile Include="Crm\Report.cs" />
+    <Compile Include="Crm\ReportCategory.cs" />
+    <Compile Include="Crm\ReportEntity.cs" />
+    <Compile Include="Crm\ReportLink.cs" />
+    <Compile Include="Crm\ReportVisibility.cs" />
+    <Compile Include="Crm\Resource.cs" />
+    <Compile Include="Crm\ResourceGroup.cs" />
+    <Compile Include="Crm\ResourceSpec.cs" />
+    <Compile Include="Crm\Role.cs" />
+    <Compile Include="Crm\RolePrivileges.cs" />
+    <Compile Include="Crm\RoleTemplatePrivileges.cs" />
+    <Compile Include="Crm\SalesOrder.cs" />
+    <Compile Include="Crm\SalesOrderDetail.cs" />
+    <Compile Include="Crm\SavedOrgInsightsConfiguration.cs" />
+    <Compile Include="Crm\SavedQuery.cs" />
+    <Compile Include="Crm\SavedQueryVisualization.cs" />
+    <Compile Include="Crm\SdkMessage.cs" />
+    <Compile Include="Crm\SdkMessageFilter.cs" />
+    <Compile Include="Crm\SdkMessagePair.cs" />
+    <Compile Include="Crm\SdkMessageProcessingStep.cs" />
+    <Compile Include="Crm\SdkMessageProcessingStepImage.cs" />
+    <Compile Include="Crm\SdkMessageProcessingStepSecureConfig.cs" />
+    <Compile Include="Crm\SdkMessageRequest.cs" />
+    <Compile Include="Crm\SdkMessageRequestField.cs" />
+    <Compile Include="Crm\SdkMessageResponse.cs" />
+    <Compile Include="Crm\SdkMessageResponseField.cs" />
+    <Compile Include="Crm\SemiAnnualFiscalCalendar.cs" />
+    <Compile Include="Crm\Site.cs" />
+    <Compile Include="Crm\SiteMap.cs" />
+    <Compile Include="Crm\SLA.cs" />
+    <Compile Include="Crm\SLAItem.cs" />
+    <Compile Include="Crm\SLAKPIInstance.cs" />
+    <Compile Include="Crm\SocialActivity.cs" />
+    <Compile Include="Crm\SocialInsightsConfiguration.cs" />
+    <Compile Include="Crm\SocialProfile.cs" />
+    <Compile Include="Crm\Solution.cs" />
+    <Compile Include="Crm\SolutionComponent.cs" />
+    <Compile Include="Crm\Subject.cs" />
+    <Compile Include="Crm\SystemForm.cs" />
+    <Compile Include="Crm\SystemUser.cs" />
+    <Compile Include="Crm\SystemUserLicenses.cs" />
+    <Compile Include="Crm\SystemUserProfiles.cs" />
+    <Compile Include="Crm\SystemUserRoles.cs" />
+    <Compile Include="Crm\SystemUserSyncMappingProfiles.cs" />
+    <Compile Include="Crm\Task.cs" />
+    <Compile Include="Crm\Team.cs" />
+    <Compile Include="Crm\TeamMembership.cs" />
+    <Compile Include="Crm\TeamProfiles.cs" />
+    <Compile Include="Crm\TeamRoles.cs" />
+    <Compile Include="Crm\TeamSyncAttributeMappingProfiles.cs" />
+    <Compile Include="Crm\TeamTemplate.cs" />
+    <Compile Include="Crm\Template.cs" />
+    <Compile Include="Crm\Territory.cs" />
+    <Compile Include="Crm\TextAnalyticsEntityMapping.cs" />
+    <Compile Include="Crm\Theme.cs" />
+    <Compile Include="Crm\TraceLog.cs" />
+    <Compile Include="Crm\TransactionCurrency.cs" />
+    <Compile Include="Crm\TransformationMapping.cs" />
+    <Compile Include="Crm\TransformationParameterMapping.cs" />
+    <Compile Include="Crm\TranslationProcess.cs" />
+    <Compile Include="Crm\UoM.cs" />
+    <Compile Include="Crm\UoMSchedule.cs" />
+    <Compile Include="Crm\UserEntityInstanceData.cs" />
+    <Compile Include="Crm\UserEntityUISettings.cs" />
+    <Compile Include="Crm\UserForm.cs" />
+    <Compile Include="Crm\UserMapping.cs" />
+    <Compile Include="Crm\UserQuery.cs" />
+    <Compile Include="Crm\UserQueryVisualization.cs" />
+    <Compile Include="Crm\UserSettings.cs" />
+    <Compile Include="Crm\WebResource.cs" />
+    <Compile Include="Crm\Workflow.cs" />
+    <Compile Include="Crm\WorkflowDependency.cs" />
+    <Compile Include="Crm\WorkflowLog.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="luxshare.snk" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
