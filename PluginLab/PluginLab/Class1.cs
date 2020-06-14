@@ -117,40 +117,47 @@ namespace Luxshare.Crm.Bu17.Plugins.QuoteRoute
                         }
                     });
 
-                    try
-                    {
-                        genericMachineCostBase = genericMachineCostBase
-                                   / (decimal)salesParameter.lux_gmcyear / (decimal)salesParameter.lux_gmcmonth
-                                   / (decimal)salesParameter.lux_gmcday / (decimal)salesParameter.lux_gmchour
-                                   / (decimal)outputUPH;
-                    }
-                    catch (Exception)
+                    if (salesParameter.lux_gmcyear == 0 || salesParameter.lux_gmcmonth == 0 || salesParameter.lux_gmcday == 0 || salesParameter.lux_gmchour == 0 || outputUPH == 0)
                     {
                         tracingService.Trace("devided by zero: salesParameter.lux_gmcyear, salesParameter.lux_gmcmonth, salesParameter.lux_gmcday, salesParameter.lux_gmchour, outputUPH");
                         genericMachineCostBase = 0;
+                    }
+                    else
+                    {
+                        genericMachineCostBase = genericMachineCostBase
+                                / (decimal)salesParameter.lux_gmcyear / (decimal)salesParameter.lux_gmcmonth
+                                / (decimal)salesParameter.lux_gmcday / (decimal)salesParameter.lux_gmchour
+                                / (decimal)outputUPH;
                     }
 
                     // seven
                     genericMachineCostUsd = genericMachineCostBase * (decimal)quoteRoute.lux_exchangerate;
 
                     //eight
+
                     operationsMCEquipments.ForEach(operationMCEquipment =>
-                    {
-                        if (operationMCEquipment.lux_equipmentcategoryEnum == lux_EquipmentCategory.CustomizeEquipment)
-                        {
-                            customizedEquipmentCostBase += (decimal)operationMCEquipment.lux_amountbase;
-                        }
-                    });
+                                     {
+                                         if (operationMCEquipment.lux_equipmentcategoryEnum == lux_EquipmentCategory.CustomizeEquipment)
+                                         {
+                                             customizedEquipmentCostBase += (decimal)operationMCEquipment.lux_amountbase;
+                                         }
+                                     });
+
+
+                    tracingService.Trace("eight: operationMCEquipment.lux_equipmentcategoryEnum");
+
+
 
                     customizedEquipmentCostBase = customizedEquipmentCostBase / (decimal)quoteRoute.lux_estimatetotalvolum;
 
                     // nine
                     customizedEquipmentCostUsd = customizedEquipmentCostBase * (decimal)quoteRoute.lux_exchangerate;
+                    tracingService.Trace("nine");
 
                     //ten
                     operationsMCEquipments.ForEach(operationsMCEquipment =>
                     {
-                        if (operationsMCEquipment.lux_equipmentcategoryEnum == lux_EquipmentCategory.FixtureConsummablespareparts)
+                        if (operationsMCEquipment.lux_equipmentcategoryEnum == lux_EquipmentCategory.FixtureConsummablespareparts && operationsMCEquipment.lux_amountbase != null)
                         {
                             fixtureCostBase += (decimal)operationsMCEquipment.lux_amountbase;
                         }
@@ -158,13 +165,20 @@ namespace Luxshare.Crm.Bu17.Plugins.QuoteRoute
 
                     fixtureCostBase = fixtureCostBase / (decimal)quoteRoute.lux_estimatetotalvolum;
                     fixtureCostUsd = fixtureCostBase * (decimal)quoteRoute.lux_exchangerate;
-
+                    tracingService.Trace("ten");
                     // eleven
-                    lux_quoterouteversion quoteRouteVersionDro = crmDb.lux_quoterouteversionSet.SingleOrDefault(x => x.Id.Equals(quoteRoute.lux_quoterouteversion.Id));
-                    Quote quoteDro = crmDb.QuoteSet.SingleOrDefault(x => x.Id.Equals(quoteRouteVersionDro.lux_quoteid.Id));
-                    lux_quotemisc quotemiscDro = crmDb.lux_quotemiscSet.FirstOrDefault(x => x.lux_quote.Id.Equals(quoteDro.Id));
-                    lux_quotemiscother quotemiscotherDro = crmDb.lux_quotemiscotherSet.FirstOrDefault(x => x.lux_quotemisc.Id.Equals(quotemiscDro.Id));
-                    partiiCostBase = (decimal)quotemiscotherDro.lux_totalelectricity / (decimal)quotemiscotherDro.lux_totalwatercosty / (decimal)quotemiscotherDro.lux_totalspareparts / (decimal)quotemiscotherDro.lux_totalcosumablepartscost;
+                    if (quoteRoute.lux_quoterouteversion is null)
+                    {
+                        tracingService.Trace("quoteRoute.lux_quoterouteversion is null");
+                    }
+                    else
+                    {
+                        lux_quoterouteversion quoteRouteVersionDro = crmDb.lux_quoterouteversionSet.SingleOrDefault(x => x.Id.Equals(quoteRoute.lux_quoterouteversion.Id));
+                        Quote quoteDro = crmDb.QuoteSet.SingleOrDefault(x => x.Id.Equals(quoteRouteVersionDro.lux_quoteid.Id));
+                        lux_quotemisc quotemiscDro = crmDb.lux_quotemiscSet.FirstOrDefault(x => x.lux_quote.Id.Equals(quoteDro.Id));
+                        lux_quotemiscother quotemiscotherDro = crmDb.lux_quotemiscotherSet.FirstOrDefault(x => x.lux_quotemisc.Id.Equals(quotemiscDro.Id));
+                        partiiCostBase = (decimal)quotemiscotherDro.lux_totalelectricity / (decimal)quotemiscotherDro.lux_totalwatercosty / (decimal)quotemiscotherDro.lux_totalspareparts / (decimal)quotemiscotherDro.lux_totalcosumablepartscost;
+                    }
 
                     // twelve
                     partiiCostUsd = partiiCostBase * (decimal)quoteRoute.lux_exchangerate;
@@ -176,13 +190,20 @@ namespace Luxshare.Crm.Bu17.Plugins.QuoteRoute
                     totalCostUsd = totalCostBase * (decimal)quoteRoute.lux_exchangerate;
 
                     // fifteen
+
                     lux_quoteroutepmd quoteRoutePmd = crmDb.lux_quoteroutepmdSet.FirstOrDefault(x => x.Id.Equals(((lux_quoteroutepmd)quoteRoute.Attributes["lux_quoteroutepaintmaterialdosageid"]).Id));
                     lux_quoteroutepc quoteRoutePc = crmDb.lux_quoteroutepcSet.FirstOrDefault(x => x.Id.Equals(quoteRoutePmd.Id));
                     paintCostBase = (decimal)quoteRoutePc.Attributes["lux_costbase"];
 
+
+                    tracingService.Trace("Get paint Cost base fail");
+
+
+
                     // sixteen
                     paintCostUsd = paintCostBase * (decimal)quoteRoute.lux_exchangerate;
                     tracingService.Trace("2. mapping data to quoteRoute created");
+
                     // 2. mapping data to quoteRoute created
                     quoteRoute.lux_ops = totalOps;
                     quoteRoute.lux_outputuph = outputUPH;
@@ -220,6 +241,5 @@ namespace Luxshare.Crm.Bu17.Plugins.QuoteRoute
                 }
             }
         }
-
     }
 }
